@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public final static String TAG = MainActivity.class.getSimpleName();
-    public final static String INT_EXTRA = "extra_value";
+    public final static String NUM_OF_CLICKS = "numberOfClicks";
     private int incrementValue;
     private TextView incrementTv;
     private Button incrementBtn;
@@ -22,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG,"onCreate: Happy to be born");
         if(savedInstanceState != null)
-            incrementValue = savedInstanceState.getInt(INT_EXTRA);
+            incrementValue = savedInstanceState.getInt(NUM_OF_CLICKS);
         initViews();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(INT_EXTRA, incrementValue);
+        outState.putInt(NUM_OF_CLICKS, incrementValue);
         super.onSaveInstanceState(outState);
     }
 
@@ -36,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
         incrementTv = findViewById(R.id.counter_value_tv);
         incrementBtn = findViewById(R.id.increment_bt);
 
-        incrementTv.setText(incrementValue + "");
+        incrementTv.setText(String.valueOf(incrementValue));
 
         incrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 incrementValue++;
-                incrementTv.setText(incrementValue + "");
+                incrementTv.setText(String.valueOf(incrementValue));
             }
         });
     }
