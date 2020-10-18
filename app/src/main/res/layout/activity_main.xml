@@ -25,7 +25,7 @@
         android:id="@+id/increment_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click me"
+        android:text="@string/button_label"
         android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

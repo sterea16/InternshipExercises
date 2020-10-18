@@ -1,4 +1,4 @@
-package com.example.internshipexercises;
+package com.example.internshipExercises;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,10 +11,9 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public final static String TAG = MainActivity.class.getSimpleName();
-    public final static String INT_EXTRA = "extra_value";
+    public final static String INT_EXTRA = MainActivity.class.getSimpleName() + " extra_value";
     private int incrementValue;
     private TextView incrementTv;
-    private Button incrementBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +33,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews(){
         incrementTv = findViewById(R.id.counter_value_tv);
-        incrementBtn = findViewById(R.id.increment_bt);
+        Button incrementBtn = findViewById(R.id.increment_bt);
 
-        incrementTv.setText(incrementValue + "");
+        incrementTv.setText(String.valueOf(incrementValue));
 
         incrementBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 incrementValue++;
-                incrementTv.setText(incrementValue + "");
+                incrementTv.setText(String.valueOf(incrementValue));
             }
         });
     }
