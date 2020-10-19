@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews(){
-        incrementTv = findViewById(R.id.counter_value_tv);
+        /*incrementTv = findViewById(R.id.counter_value_tv);
         Button incrementBtn = findViewById(R.id.increment_bt);
 
         incrementTv.setText(String.valueOf(incrementValue));
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 incrementValue++;
                 incrementTv.setText(String.valueOf(incrementValue));
             }
-        });
+        });*/
     }
 
     @Override

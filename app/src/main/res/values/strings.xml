@@ -2,4 +2,9 @@
     <string name="app_name">Internship Exercises</string>
     <string name="label">Number of clicks</string>
     <string name="button_label">Click me</string>
+    <string name="restaurant_title">Restaurant Title</string>
+    <string name="restaurant_subtitle">restaurant subtitle text text text text text text text text text text text text text text text text</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="button">Button</string>
+    <string name="floating">Floating...</string>
 </resources>
