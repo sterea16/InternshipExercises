@@ -6,81 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/ButtonA"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_margin="@dimen/margin_8"
-        android:maxWidth="@dimen/list_item_icon_size"
-        android:maxHeight="@dimen/list_item_icon_size"
-        android:text="@string/restaurants"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
-
-
-    <Button
-        android:id="@+id/buttonB"
+    <ImageView
+        android:id="@+id/image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonD"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-    <Button
-        android:id="@+id/buttonC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/button"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonD"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-    <Button
-        android:id="@+id/buttonD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonC"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonB"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.5" />
-
-    <Button
-        android:id="@+id/buttonF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/floating"
-        app:layout_constraintCircle="@id/ButtonA"
-        app:layout_constraintCircleAngle="45"
-        app:layout_constraintCircleRadius="@dimen/list_item_icon_size" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

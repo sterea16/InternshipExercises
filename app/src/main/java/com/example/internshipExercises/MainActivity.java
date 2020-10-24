@@ -2,77 +2,38 @@ package com.example.internshipExercises;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
+
+import com.example.internshipExercises.model.post.Post;
+import com.example.internshipExercises.server.ServerProvider;
+import com.example.internshipExercises.util.DownloaderUtil;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String TAG = MainActivity.class.getSimpleName();
-    public final static String INT_EXTRA = MainActivity.class.getSimpleName() + " extra_value";
-    private int incrementValue;
-    private TextView incrementTv;
-
+    public final static String TAG = "MainActivity";
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG,"onCreate: Happy to be born");
-        if(savedInstanceState != null)
-            incrementValue = savedInstanceState.getInt(INT_EXTRA);
-        initViews();
+        imageView = findViewById(R.id.image_view);
+        downloadImageUsingThread();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(INT_EXTRA, incrementValue);
-        super.onSaveInstanceState(outState);
-    }
-
-    private void initViews(){
-        /*incrementTv = findViewById(R.id.counter_value_tv);
-        Button incrementBtn = findViewById(R.id.increment_bt);
-
-        incrementTv.setText(String.valueOf(incrementValue));
-
-        incrementBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                incrementValue++;
-                incrementTv.setText(String.valueOf(incrementValue));
-            }
-        });*/
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart: I exist, but you cannot see me");
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        Log.d(TAG,"onResume: Preparing final UI changes for you master");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG,"onPause: You can see me, but I don't want to interact");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG,"onStop: Packing up to leave");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG,"onDestroy: Bye, bye!");
+    private void downloadImageUsingThread(){
+        new Thread(() -> {
+            final Bitmap bitmap = DownloaderUtil.INSTANCE.downloadImage();
+            runOnUiThread(() -> imageView.setImageBitmap(bitmap));
+        }).start();
     }
 }

@@ -6,4 +6,10 @@
     <dimen name="title_size">20sp</dimen>
     <dimen name="subtitle_size">16sp</dimen>
     <dimen name="list_item_min_height">64dp</dimen>
+    <dimen name="margin_very_small">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16</dimen>
+    <dimen name="margin_large">24</dimen>
+
+    <dimen name="image_size">50dp</dimen>
 </resources>
