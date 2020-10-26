@@ -1,39 +1,66 @@
 package com.example.internshipExercises;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.example.internshipExercises.util.DataBindExecutor;
-import com.example.internshipExercises.util.DownloaderUtil;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView = findViewById(R.id.image_view);
-        /*downloadImageUsingThread();*/
-        downloadImageUsingExecutor();
+
+        setToolbar();
     }
 
-    private void downloadImageUsingExecutor() {
-        Runnable runnable = () -> {
-            Bitmap bitmap = DownloaderUtil.INSTANCE.downloadImage();
-            runOnUiThread(() -> imageView.setImageBitmap(bitmap));
-        };
-        DataBindExecutor downloadExecutor = new DataBindExecutor();
-        downloadExecutor.execute(runnable);
+
+    private void setToolbar(){
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        myToolbar.setTitle(getResources().getString(R.string.title));
+        myToolbar.setSubtitle(getResources().getString(R.string.subtitle));
+        setSupportActionBar(myToolbar);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
-    private void downloadImageUsingThread(){
-        new Thread(() -> {
-            final Bitmap bitmap = DownloaderUtil.INSTANCE.downloadImage();
-            runOnUiThread(() -> imageView.setImageBitmap(bitmap));
-        }).start();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_favorite:
+                Toast.makeText(MainActivity.this, getResources().getString(R.string.favorites_clicked), Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.action_settings:
+                Toast.makeText(MainActivity.this, R.string.settings_clicked, Toast.LENGTH_SHORT).show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Internship Exercises</string>
     <string name="label">A simple image</string>
+    <string name="favorites_clicked">Favorites clicked</string>
+    <string name="settings_clicked">Setting clicked</string>
+    <string name="favorite">favorite</string>
+    <string name="settings">settings</string>
+
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
 </resources>
