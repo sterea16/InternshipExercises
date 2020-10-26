@@ -2,38 +2,35 @@ package com.example.internshipExercises;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Bitmap;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.util.Log;
 
-import com.example.internshipExercises.util.DataBindExecutor;
-import com.example.internshipExercises.util.DownloaderUtil;
+public class MainActivity extends AppCompatActivity{
+    public static final String FILE_NAME = MainActivity.class.getSimpleName() + " SHARED PREF FILE NAME FOR COLORS ";
+    public static final String CHOSEN_COLOR_KEY = MainActivity.class.getSimpleName() + " CHOSEN COLOR KEY ";
+    public static final String CHOSEN_INT_KEY = MainActivity.class.getSimpleName() + " CHOSEN INTEGER KEY ";
 
-public class MainActivity extends AppCompatActivity {
-
-    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView = findViewById(R.id.image_view);
-        /*downloadImageUsingThread();*/
-        downloadImageUsingExecutor();
+        usePreferences();
     }
 
-    private void downloadImageUsingExecutor() {
-        Runnable runnable = () -> {
-            Bitmap bitmap = DownloaderUtil.INSTANCE.downloadImage();
-            runOnUiThread(() -> imageView.setImageBitmap(bitmap));
-        };
-        DataBindExecutor downloadExecutor = new DataBindExecutor();
-        downloadExecutor.execute(runnable);
+    private void usePreferences(){
+        SharedPreferences prefs = getSharedPreferences(FILE_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString(CHOSEN_COLOR_KEY, "RED");
+        editor.putInt(CHOSEN_INT_KEY, 7);
+        editor.apply();
+
+        String color = prefs.getString(CHOSEN_COLOR_KEY,"BLACK");
+        int number = prefs.getInt(CHOSEN_INT_KEY, 0);
+
+        Log.d("MAinActivity", "color: " + color + " number: " + number);
     }
 
-    private void downloadImageUsingThread(){
-        new Thread(() -> {
-            final Bitmap bitmap = DownloaderUtil.INSTANCE.downloadImage();
-            runOnUiThread(() -> imageView.setImageBitmap(bitmap));
-        }).start();
-    }
 }
